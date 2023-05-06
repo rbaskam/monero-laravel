@@ -3,13 +3,12 @@
 namespace Rbaskam\MoneroLaravel;
 
 use MoneroIntegrations\MoneroPhp\daemonRPC;
-use MoneroIntegrations\MoneroPhp\walletRPC;
 
 class DeamonRPC
 {
     public function connect()
     {
-        return  new daemonRPC(
+        return new daemonRPC(
             config('monero-laravel.daemonRPC.host'),
             config('monero-laravel.daemonRPC.port'),
             config('monero-laravel.daemonRPC.ssl'),
