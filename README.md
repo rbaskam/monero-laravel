@@ -92,7 +92,7 @@ volumes:
     sail-tor-keys:
         driver: local
 ```
-### ENV
+### ENV TESTNET 
 ```
 MONERO_DEAMON_RPC_HOST="host.docker.internal"
 MONERO_DEAMON_RPC_PORT=18089
