@@ -4,10 +4,9 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Connection Parameters
+    | Connection Parameters for Deamon
     |--------------------------------------------------------------------------
     |
-    | Connection Paramaters for Deamon
     |
     */
     'daemonRPC' => [
@@ -17,4 +16,20 @@ return [
         'user' => env('MONERO_DEAMON_RPC_USER', null),
         'password' => env('MONERO_DEAMON_RPC_PASSWORD', null),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Connection Parameters for wallet
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+    'walletRPC' => [
+        'host' => env('MONERO_WALLET_RPC_HOST'),
+        'port' => env('MONERO_WALLET_RPC_PORT'),
+        'ssl' => env('MONERO_WALLET_RPC_SSL', true),
+        'user' => env('MONERO_WALLET_RPC_USER', null),
+        'password' => env('MONERO_WALLET_RPC_PASSWORD', null),
+    ],
+
 ];
