@@ -16,5 +16,5 @@ return [
         'ssl' => env('MONERO_DEAMON_RPC_SSL', true),
         'user' => env('MONERO_DEAMON_RPC_USER', null),
         'password' => env('MONERO_DEAMON_RPC_PASSWORD', null),
-    ]
+    ],
 ];
