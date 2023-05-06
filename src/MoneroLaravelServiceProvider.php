@@ -2,9 +2,9 @@
 
 namespace Rbaskam\MoneroLaravel;
 
+use Rbaskam\MoneroLaravel\Commands\MoneroLaravelCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Rbaskam\MoneroLaravel\Commands\MoneroLaravelCommand;
 
 class MoneroLaravelServiceProvider extends PackageServiceProvider
 {
