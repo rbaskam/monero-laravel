@@ -64,7 +64,20 @@ return [
             - "--no-igd"
             - "--enable-dns-blocklist"
             - "--prune-blockchain"
-
+    monerowallet:
+        image: sethsimmons/simple-monero-wallet-rpc:latest
+        restart: unless-stopped
+        container_name: monero-wallet-rpc
+        volumes:
+            - sail-bitmonerowallet:/home/monero
+        ports:
+            - 18083:18083
+        command:
+            - "--daemon-address=127.0.0.1:18089"
+            - "--trusted-daemon"
+            - "--rpc-bind-port=18083"
+            - "--disable-rpc-login"
+            - "--wallet-dir=."
     tor:
         image: goldy/tor-hidden-service:latest
         container_name: tor
@@ -99,17 +112,17 @@ volumes:
         driver: local
     sail-tor-keys:
         driver: local
+    sail-bitmonerowallet:
+        driver: local
 ```
-### ENV TESTNET 
+### ENV
 ```
-// Change to match your daemon (monerod) IP address and port; 18081 is the default port for mainnet, 28081 for testnet, 38081 for stagenet
 MONERO_DEAMON_RPC_HOST="host.docker.internal"
 MONERO_DEAMON_RPC_PORT=18089
 MONERO_DEAMON_RPC_SSL=false
 MONERO_DEAMON_RPC_USER=
 MONERO_DEAMON_RPC_PASSWORD=
 
-// Change to match your wallet (monero-wallet-rpc) IP address and port; 18083 is the customary port for mainnet, 28083 for testnet, 38083 for stagenet
 MONERO_WALLET_RPC_HOST="host.docker.internal"
 MONERO_WALLET_RPC_PORT=18089
 MONERO_WALLET_RPC_SSL=false
@@ -123,6 +136,8 @@ MONERO_WALLET_RPC_PASSWORD=
 #### DeamonRPC
 
 ```php
+use Rbaskam\MoneroLaravel\DeamonRPC;
+
 $daemonRPC = new DeamonRPC();
 $daemonRPC = $daemonRPC->connect();
 
@@ -146,6 +161,8 @@ $getbans = $daemonRPC->getbans();
 #### WalletRPC
 
 ```php
+use Rbaskam\MoneroLaravel\WalletRPC;
+
 $walletRPC = new WalletRPC();
 $walletRPC = $walletRPC->connect(); 
 
