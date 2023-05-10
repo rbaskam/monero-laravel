@@ -69,6 +69,8 @@ return [
         image: sethsimmons/simple-monero-wallet-rpc:latest
         restart: unless-stopped
         container_name: monero-wallet-rpc
+        networks:
+            - sail
         volumes:
             - sail-bitmonerowallet:/home/monero
         ports:
