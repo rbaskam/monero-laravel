@@ -64,6 +64,7 @@ return [
             - "--no-igd"
             - "--enable-dns-blocklist"
             - "--prune-blockchain"
+            - "--testnet"
     monerowallet:
         image: sethsimmons/simple-monero-wallet-rpc:latest
         restart: unless-stopped
@@ -73,11 +74,12 @@ return [
         ports:
             - 18083:18083
         command:
-            - "--daemon-address=127.0.0.1:18089"
+            - "--daemon-address=monerod:18089"
             - "--trusted-daemon"
             - "--rpc-bind-port=18083"
             - "--disable-rpc-login"
             - "--wallet-dir=."
+            - "--testnet"
     tor:
         image: goldy/tor-hidden-service:latest
         container_name: tor
