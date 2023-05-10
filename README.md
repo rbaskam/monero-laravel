@@ -119,6 +119,34 @@ volumes:
     sail-bitmonerowallet:
         driver: local
 ```
+
+### Sail PHP 8.2 Docker File
+Publish the Sail files and add the following before `&& curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \`
+```
+....
+&& apt-get update && apt-get upgrade -y \
+&& apt-get install -y gcc-multilib libc-dev bzip2 libgpg-error-dev libassuan-dev \
+&& apt-get install -y build-essential \
+&& curl -sSn -o gnupg.tar.bz2 https://gnupg.org/ftp/gcrypt/gpgme/gpgme-1.20.0.tar.bz2 \
+&& mkdir gnupg \
+&& tar -xf gnupg.tar.bz2 --directory gnupg \
+&& (cd gnupg/gpgme-* && ./configure) \
+&& (cd gnupg/gpgme-* && make && make install) \
+&& pecl install gnupg \
+&& apt-get install -y php-gmp \
+...
+
+```
+
+### Sail PHP 8.2 PHP INI
+Publish the Sail files and add the following at the bottom
+```
+...
+
+extension=gnupg.so
+extension=gmp.so
+```
+
 ### ENV
 ```
 MONERO_DEAMON_RPC_HOST="host.docker.internal"
@@ -128,7 +156,7 @@ MONERO_DEAMON_RPC_USER=
 MONERO_DEAMON_RPC_PASSWORD=
 
 MONERO_WALLET_RPC_HOST="host.docker.internal"
-MONERO_WALLET_RPC_PORT=18089
+MONERO_WALLET_RPC_PORT=18083
 MONERO_WALLET_RPC_SSL=false
 MONERO_WALLET_RPC_USER=
 MONERO_WALLET_RPC_PASSWORD=
