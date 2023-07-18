@@ -12,6 +12,8 @@ You can install the package via composer:
 ```bash
 composer require rbaskam/monero-laravel
 ```
+If you get an error with min stability thats due the monero integration package used so you will need to update your composer.json to have 
+```"minimum-stability": "dev",```
 
 You can publish the config file with:
 
