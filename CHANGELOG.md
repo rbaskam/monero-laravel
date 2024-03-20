@@ -2,6 +2,10 @@
 
 All notable changes to `monero-laravel` will be documented in this file.
 
+## V2.0.0 - 2024-03-20
+
+Upgrade to allow Laravel 11
+
 ## v1.0.0 - 2023-07-18
 
 ### What's Changed
